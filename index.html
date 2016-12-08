@@ -1,0 +1,54 @@
+<!DOCTYPE html5>
+<html ng-app="PokerDeck">
+<head>
+	<title>Deck of Cards</title>
+	<link rel="stylesheet" type="text/css" href="css/cards.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-controller="DeckCtrl" ng-cloak>
+
+	<h1 class="deck-heading">Deck of Cards</h1>
+
+	<div class="playingCards">
+		<div ng-if="spread" class="card" ng-class="card.card" ng-repeat="card in deck">
+		    <span class="rank">{{card.value}}</span>
+		    <span class="suit"></span>
+		</div>
+	    <ul class="deck topdeck" ng-if="!spread">
+	        <li ng-repeat="card in deck">
+	        	<div class="card back">*</div>
+	        </li>
+	    </ul>
+		<h2 class="deck-subheading" ng-if="drawn.length == 52">This Deck is empty!</h2>
+	</div>
+
+	<div class="slider">  
+      <input type="checkbox" id="slider" ng-model="spread" ng-init="spread = true"/>
+      <label for="slider"></label>
+    </div>
+
+	<div class="controls">
+		<button ng-if="drawn.length < 52" class="button" ng-click="shuffle(deck)">Shuffle Deck</button>
+		<button ng-if="drawn.length == 52" class="button" ng-click="reset()">Reset Deck</button>
+		<button ng-disabled="drawn.length == 52" class="button draw" ng-click="dealOneCard()">Draw Card</button>
+	</div>
+
+	<div ng-if="drawn.length > 0" class="playingCards drawn">
+		<span class="spacer"></span>
+		<ul class="deck">
+	        <li ng-repeat="card in drawn">
+	            <div class="card" ng-class="card.card">
+				    <span class="rank">{{card.value}}</span>
+				    <span class="suit"></span>
+				</div>
+	        </li>
+	    </ul>
+	    <span class="spacer"></span>
+	</div>
+
+</body>
+
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
+</html>
