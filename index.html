@@ -15,7 +15,7 @@
 		    <span class="suit"></span>
 		</div>
 	    <ul class="deck topdeck" ng-if="!spread">
-	        <li ng-repeat="card in deck">
+	        <li ng-class="{'bounce' : shuffling}" ng-repeat="card in deck">
 	        	<div class="card back">*</div>
 	        </li>
 	    </ul>
@@ -28,7 +28,7 @@
     </div>
 
 	<div class="controls">
-		<button ng-if="drawn.length < 52" class="button" ng-click="shuffle(deck)">Shuffle Deck</button>
+		<button ng-if="drawn.length < 52" ng-disabled="shuffling == true" class="button" ng-click="shuffle(deck);">Shuffle Deck</button>
 		<button class="button" ng-click="reset()">Reset Deck</button>
 		<button ng-disabled="drawn.length == 52" class="button draw" ng-click="dealOneCard()">Draw Card</button>
 	</div>

@@ -20,17 +20,24 @@ app.service('Deck', [function (){
 	};
 }]);
 
-app.controller('DeckCtrl',['$scope', 'Deck', function ($scope, Deck){
+app.controller('DeckCtrl',['$scope', '$timeout', 'Deck', function ($scope, $timeout, Deck){
 	
 	$scope.deck = Deck.makeDeck();
 	$scope.drawn = [];
+	$scope.shuffling = false;
 
     $scope.shuffle = function(o){
 	    for(var j, x,
-	    	i = o.length; i; 
-	    	j = Math.floor(Math.random() * i), 
-	    	x = o[--i], o[i] = o[j], o[j] = x);
-        	return o;
+    	i = o.length; i; 
+    	j = Math.floor(Math.random() * i), 
+    	x = o[--i], o[i] = o[j], o[j] = x);
+
+	    $scope.shuffling = true;
+		$timeout(function() {
+			$scope.shuffling = false;
+		}, 600);
+
+        return o;
 	};
 
 	$scope.dealOneCard = function(){
