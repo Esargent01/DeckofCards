@@ -13,6 +13,11 @@ app.service('Deck', [function (){
 	    }
 	    return deck;
 	};
+
+	this.resetDeck = function(){
+		deck = [];
+	    return deck;
+	};
 }]);
 
 app.controller('DeckCtrl',['$scope', 'Deck', function ($scope, Deck){
@@ -36,7 +41,8 @@ app.controller('DeckCtrl',['$scope', 'Deck', function ($scope, Deck){
 	};
 
 	$scope.reset = function(){
-		$scope.deck = Deck.makeDeck();
+		$scope.deck = Deck.resetDeck();
+	    $scope.deck = Deck.makeDeck();
 	    $scope.drawn = [];
 	};
 

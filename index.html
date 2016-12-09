@@ -29,7 +29,7 @@
 
 	<div class="controls">
 		<button ng-if="drawn.length < 52" class="button" ng-click="shuffle(deck)">Shuffle Deck</button>
-		<button ng-if="drawn.length == 52" class="button" ng-click="reset()">Reset Deck</button>
+		<button class="button" ng-click="reset()">Reset Deck</button>
 		<button ng-disabled="drawn.length == 52" class="button draw" ng-click="dealOneCard()">Draw Card</button>
 	</div>
 
